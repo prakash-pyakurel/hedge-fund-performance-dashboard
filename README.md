@@ -110,5 +110,6 @@ To import:
 
 Made by [Prakash Pyakurel](https://www.linkedin.com/in/prakash-pyakurel/)  
 📧 prakashpyakurel@outlook.com
+📎 LinkedIn: [linkedin.com/in/prakash-pyakurel](https://www.linkedin.com/in/prakash-pyakurel)
 
 
