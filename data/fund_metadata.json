@@ -1,0 +1,402 @@
+[
+ {
+   "fund_id": "FND001",
+   "manager": "HedgePoint",
+   "strategy": "Quantitative",
+   "inception_date": "2018-12-06 00:00:00",
+   "aum": 109.45,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND002",
+   "manager": "BlueEdge",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2017-08-16 00:00:00",
+   "aum": 440.24,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND003",
+   "manager": "Alpha Capital",
+   "strategy": "Global Macro",
+   "inception_date": "2019-10-02 00:00:00",
+   "aum": 64.67,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND004",
+   "manager": "Alpha Capital",
+   "strategy": "Quantitative",
+   "inception_date": "2016-08-01 00:00:00",
+   "aum": 111.78,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND005",
+   "manager": "HedgePoint",
+   "strategy": "Global Macro",
+   "inception_date": "2015-02-11 00:00:00",
+   "aum": 411.34,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND006",
+   "manager": "Zenith Capital",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2018-08-23 00:00:00",
+   "aum": 327.52,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND007",
+   "manager": "HedgePoint",
+   "strategy": "Event-Driven",
+   "inception_date": "2019-03-10 00:00:00",
+   "aum": 127.66,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND008",
+   "manager": "HedgePoint",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2017-02-12 00:00:00",
+   "aum": 494.48,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND009",
+   "manager": "HedgePoint",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2016-09-23 00:00:00",
+   "aum": 236.12,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND010",
+   "manager": "Zenith Capital",
+   "strategy": "Event-Driven",
+   "inception_date": "2016-07-26 00:00:00",
+   "aum": 205.11,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND011",
+   "manager": "Zenith Capital",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2019-07-02 00:00:00",
+   "aum": 182.19,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND012",
+   "manager": "Quantum Fund",
+   "strategy": "Event-Driven",
+   "inception_date": "2015-04-26 00:00:00",
+   "aum": 87.22,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND013",
+   "manager": "HedgePoint",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2016-11-09 00:00:00",
+   "aum": 360.81,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND014",
+   "manager": "BlueEdge",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2017-09-03 00:00:00",
+   "aum": 324.81,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND015",
+   "manager": "Alpha Capital",
+   "strategy": "Global Macro",
+   "inception_date": "2020-05-25 00:00:00",
+   "aum": 354.87,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND016",
+   "manager": "Alpha Capital",
+   "strategy": "Event-Driven",
+   "inception_date": "2015-01-14 00:00:00",
+   "aum": 366.69,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND017",
+   "manager": "Quantum Fund",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2015-10-13 00:00:00",
+   "aum": 25.63,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND018",
+   "manager": "HedgePoint",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2016-08-27 00:00:00",
+   "aum": 441.29,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND019",
+   "manager": "HedgePoint",
+   "strategy": "Quantitative",
+   "inception_date": "2017-08-12 00:00:00",
+   "aum": 83.87,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND020",
+   "manager": "Zenith Capital",
+   "strategy": "Global Macro",
+   "inception_date": "2018-11-17 00:00:00",
+   "aum": 306.85,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND021",
+   "manager": "Alpha Capital",
+   "strategy": "Quantitative",
+   "inception_date": "2015-04-16 00:00:00",
+   "aum": 43.18,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND022",
+   "manager": "HedgePoint",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2017-11-16 00:00:00",
+   "aum": 310.57,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND023",
+   "manager": "BlueEdge",
+   "strategy": "Quantitative",
+   "inception_date": "2019-11-01 00:00:00",
+   "aum": 130.54,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND024",
+   "manager": "BlueEdge",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2019-03-21 00:00:00",
+   "aum": 181.21,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND025",
+   "manager": "Alpha Capital",
+   "strategy": "Global Macro",
+   "inception_date": "2016-10-20 00:00:00",
+   "aum": 427.37,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND026",
+   "manager": "Quantum Fund",
+   "strategy": "Global Macro",
+   "inception_date": "2015-12-10 00:00:00",
+   "aum": 198.08,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND027",
+   "manager": "Zenith Capital",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2016-09-17 00:00:00",
+   "aum": 137.95,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND028",
+   "manager": "Zenith Capital",
+   "strategy": "Quantitative",
+   "inception_date": "2018-04-17 00:00:00",
+   "aum": 174.25,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND029",
+   "manager": "HedgePoint",
+   "strategy": "Event-Driven",
+   "inception_date": "2020-01-13 00:00:00",
+   "aum": 363.63,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND030",
+   "manager": "HedgePoint",
+   "strategy": "Quantitative",
+   "inception_date": "2015-11-22 00:00:00",
+   "aum": 256.92,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND031",
+   "manager": "Quantum Fund",
+   "strategy": "Global Macro",
+   "inception_date": "2019-04-14 00:00:00",
+   "aum": 397.41,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND032",
+   "manager": "BlueEdge",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2016-04-23 00:00:00",
+   "aum": 406.82,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND033",
+   "manager": "Zenith Capital",
+   "strategy": "Quantitative",
+   "inception_date": "2020-02-16 00:00:00",
+   "aum": 201.98,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND034",
+   "manager": "Quantum Fund",
+   "strategy": "Global Macro",
+   "inception_date": "2020-04-04 00:00:00",
+   "aum": 425.89,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND035",
+   "manager": "Alpha Capital",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2017-03-02 00:00:00",
+   "aum": 252.03,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND036",
+   "manager": "Zenith Capital",
+   "strategy": "Global Macro",
+   "inception_date": "2015-11-26 00:00:00",
+   "aum": 46.56,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND037",
+   "manager": "Quantum Fund",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2015-09-28 00:00:00",
+   "aum": 71.24,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND038",
+   "manager": "Zenith Capital",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2016-09-02 00:00:00",
+   "aum": 243.84,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND039",
+   "manager": "Quantum Fund",
+   "strategy": "Multi-Strategy",
+   "inception_date": "2018-03-20 00:00:00",
+   "aum": 88.25,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND040",
+   "manager": "Zenith Capital",
+   "strategy": "Event-Driven",
+   "inception_date": "2015-10-28 00:00:00",
+   "aum": 492.62,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND041",
+   "manager": "Zenith Capital",
+   "strategy": "Global Macro",
+   "inception_date": "2016-05-29 00:00:00",
+   "aum": 31.92,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND042",
+   "manager": "HedgePoint",
+   "strategy": "Event-Driven",
+   "inception_date": "2018-08-01 00:00:00",
+   "aum": 252.56,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND043",
+   "manager": "BlueEdge",
+   "strategy": "Event-Driven",
+   "inception_date": "2015-12-28 00:00:00",
+   "aum": 384.84,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND044",
+   "manager": "Quantum Fund",
+   "strategy": "Global Macro",
+   "inception_date": "2018-04-02 00:00:00",
+   "aum": 26.6,
+   "status": "Closed"
+ },
+ {
+   "fund_id": "FND045",
+   "manager": "BlueEdge",
+   "strategy": "Event-Driven",
+   "inception_date": "2020-01-26 00:00:00",
+   "aum": 400.02,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND046",
+   "manager": "BlueEdge",
+   "strategy": "Quantitative",
+   "inception_date": "2016-10-12 00:00:00",
+   "aum": 155.86,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND047",
+   "manager": "Quantum Fund",
+   "strategy": "Global Macro",
+   "inception_date": "2019-11-09 00:00:00",
+   "aum": 165.21,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND048",
+   "manager": "Zenith Capital",
+   "strategy": "Long/Short Equity",
+   "inception_date": "2019-07-01 00:00:00",
+   "aum": 430.85,
+   "status": "Active"
+ },
+ {
+   "fund_id": "FND049",
+   "manager": "BlueEdge",
+   "strategy": "Quantitative",
+   "inception_date": "2017-01-12 00:00:00",
+   "aum": 109.62,
+   "status": "Pending"
+ },
+ {
+   "fund_id": "FND050",
+   "manager": "HedgePoint",
+   "strategy": "Quantitative",
+   "inception_date": "2019-03-24 00:00:00",
+   "aum": 486.1,
+   "status": "Active"
+ }
+]

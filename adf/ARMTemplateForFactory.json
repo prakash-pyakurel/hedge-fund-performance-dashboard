@@ -1,0 +1,418 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory name",
+            "defaultValue": "adf-hedgefund-project"
+        },
+        "ls_blob_hedgefund_connectionString": {
+            "type": "secureString",
+            "metadata": "Secure string for 'connectionString' of 'ls_blob_hedgefund'"
+        },
+        "ls_sql_hedgefund_password": {
+            "type": "secureString",
+            "metadata": "Secure string for 'password' of 'ls_sql_hedgefund'"
+        },
+        "ls_sql_hedgefund_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "adf-sql-server-prakash.database.windows.net"
+        },
+        "ls_sql_hedgefund_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "HedgeFundDB"
+        },
+        "ls_sql_hedgefund_properties_typeProperties_userName": {
+            "type": "string",
+            "defaultValue": "sqladmin"
+        },
+        "ls_REST_PortfolioHoldings_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://7aa39448-ca42-49ef-8ada-25d09dc85370.mock.pstmn.io"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "[concat(parameters('factoryName'), '/ls_blob_hedgefund')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureBlobStorage",
+                "typeProperties": {
+                    "connectionString": "[parameters('ls_blob_hedgefund_connectionString')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/ls_sql_hedgefund')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureSqlDatabase",
+                "typeProperties": {
+                    "server": "[parameters('ls_sql_hedgefund_properties_typeProperties_server')]",
+                    "database": "[parameters('ls_sql_hedgefund_properties_typeProperties_database')]",
+                    "encrypt": "mandatory",
+                    "trustServerCertificate": false,
+                    "authenticationType": "SQL",
+                    "userName": "[parameters('ls_sql_hedgefund_properties_typeProperties_userName')]",
+                    "password": {
+                        "type": "SecureString",
+                        "value": "[parameters('ls_sql_hedgefund_password')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/ls_REST_PortfolioHoldings')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "RestService",
+                "typeProperties": {
+                    "url": "[parameters('ls_REST_PortfolioHoldings_properties_typeProperties_url')]",
+                    "enableServerCertificateValidation": true,
+                    "authenticationType": "Anonymous"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/pl_FinancialDataLoad')]",
+            "type": "Microsoft.DataFactory/factories/pipelines",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "activities": [
+                    {
+                        "name": "Run_Financial_ETL",
+                        "type": "ExecuteDataFlow",
+                        "dependsOn": [],
+                        "policy": {
+                            "timeout": "0.12:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "dataflow": {
+                                "referenceName": "dataflow1",
+                                "type": "DataFlowReference",
+                                "parameters": {},
+                                "datasetParameters": {
+                                    "HoldingsSource": {},
+                                    "PerformanceSource": {},
+                                    "MetadataSource": {},
+                                    "sink1": {}
+                                }
+                            },
+                            "staging": {},
+                            "compute": {
+                                "coreCount": 8,
+                                "computeType": "General"
+                            },
+                            "traceLevel": "Fine"
+                        }
+                    }
+                ],
+                "policy": {
+                    "elapsedTimeMetric": {}
+                },
+                "annotations": [],
+                "lastPublishTime": "2025-05-13T02:30:21Z"
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/dataflows/dataflow1')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/ls_SQL_FinancialDB')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "ls_sql_hedgefund",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "AzureSqlTable",
+                "schema": [],
+                "typeProperties": {
+                    "schema": "dbo",
+                    "table": "HedgeFundAnalytics"
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/ls_sql_hedgefund')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/ds_blob_metadata')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "ls_blob_hedgefund",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "Json",
+                "typeProperties": {
+                    "location": {
+                        "type": "AzureBlobStorageLocation",
+                        "fileName": "fund_metadata.json",
+                        "container": "hedgefund-data"
+                    }
+                },
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "fund_id": {
+                            "type": "string"
+                        },
+                        "manager": {
+                            "type": "string"
+                        },
+                        "strategy": {
+                            "type": "string"
+                        },
+                        "inception_date": {
+                            "type": "string"
+                        },
+                        "aum": {
+                            "type": "number"
+                        },
+                        "status": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/ls_blob_hedgefund')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/ds_blob_performance')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "ls_blob_hedgefund",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "DelimitedText",
+                "typeProperties": {
+                    "location": {
+                        "type": "AzureBlobStorageLocation",
+                        "fileName": "Fund_Performance_Metrics__CSV_Format_.csv",
+                        "container": "hedgefund-data"
+                    },
+                    "columnDelimiter": ",",
+                    "escapeChar": "\\",
+                    "firstRowAsHeader": true,
+                    "quoteChar": "\""
+                },
+                "schema": [
+                    {
+                        "name": "fund_id",
+                        "type": "String"
+                    },
+                    {
+                        "name": "date",
+                        "type": "String"
+                    },
+                    {
+                        "name": "NAV",
+                        "type": "String"
+                    },
+                    {
+                        "name": "return_pct",
+                        "type": "String"
+                    },
+                    {
+                        "name": "volatility",
+                        "type": "String"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/ls_blob_hedgefund')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/ds_api_holdings')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "ls_REST_PortfolioHoldings",
+                    "type": "LinkedServiceReference"
+                },
+                "annotations": [],
+                "type": "RestResource",
+                "typeProperties": {
+                    "relativeUrl": "/holdings"
+                },
+                "schema": []
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/ls_REST_PortfolioHoldings')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/dataflow1')]",
+            "type": "Microsoft.DataFactory/factories/dataflows",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "type": "MappingDataFlow",
+                "typeProperties": {
+                    "sources": [
+                        {
+                            "dataset": {
+                                "referenceName": "ds_api_holdings",
+                                "type": "DatasetReference"
+                            },
+                            "name": "HoldingsSource"
+                        },
+                        {
+                            "dataset": {
+                                "referenceName": "ds_blob_performance",
+                                "type": "DatasetReference"
+                            },
+                            "name": "PerformanceSource"
+                        },
+                        {
+                            "dataset": {
+                                "referenceName": "ds_blob_metadata",
+                                "type": "DatasetReference"
+                            },
+                            "name": "MetadataSource"
+                        }
+                    ],
+                    "sinks": [
+                        {
+                            "dataset": {
+                                "referenceName": "ls_SQL_FinancialDB",
+                                "type": "DatasetReference"
+                            },
+                            "name": "sink1"
+                        }
+                    ],
+                    "transformations": [
+                        {
+                            "name": "JoinHoldingsPerformance"
+                        },
+                        {
+                            "name": "SelectBodyWrapper"
+                        },
+                        {
+                            "name": "JoinWithMetadata"
+                        }
+                    ],
+                    "scriptLines": [
+                        "source(output(",
+                        "          body as (asset_class as string, current_price as double, date as date, fund_id as string, purchase_price as double, quantity as short, ticker as string),",
+                        "          headers as [string,string]",
+                        "     ),",
+                        "     allowSchemaDrift: true,",
+                        "     validateSchema: false,",
+                        "     httpMethod: 'GET',",
+                        "     timeout: 30,",
+                        "     requestInterval: 0,",
+                        "     paginationRules: ['supportRFC5988' -> 'true'],",
+                        "     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> HoldingsSource",
+                        "source(output(",
+                        "          fund_id as string,",
+                        "          date as string,",
+                        "          NAV as string,",
+                        "          return_pct as string,",
+                        "          volatility as string",
+                        "     ),",
+                        "     allowSchemaDrift: true,",
+                        "     validateSchema: false,",
+                        "     ignoreNoFilesFound: false) ~> PerformanceSource",
+                        "source(output(",
+                        "          fund_id as string,",
+                        "          manager as string,",
+                        "          strategy as string,",
+                        "          inception_date as string,",
+                        "          aum as double,",
+                        "          status as string",
+                        "     ),",
+                        "     allowSchemaDrift: true,",
+                        "     validateSchema: false,",
+                        "     ignoreNoFilesFound: false,",
+                        "     documentForm: 'arrayOfDocuments') ~> MetadataSource",
+                        "SelectBodyWrapper, PerformanceSource join(SelectBodyWrapper@fund_id == PerformanceSource@fund_id,",
+                        "     joinType:'inner',",
+                        "     matchType:'exact',",
+                        "     ignoreSpaces: false,",
+                        "     broadcast: 'auto')~> JoinHoldingsPerformance",
+                        "HoldingsSource select(mapColumn(",
+                        "          body,",
+                        "          asset_class = body.asset_class,",
+                        "          current_price = body.current_price,",
+                        "          date = body.date,",
+                        "          fund_id = body.fund_id,",
+                        "          purchase_price = body.purchase_price,",
+                        "          quantity = body.quantity,",
+                        "          ticker = body.ticker",
+                        "     ),",
+                        "     skipDuplicateMapInputs: true,",
+                        "     skipDuplicateMapOutputs: true) ~> SelectBodyWrapper",
+                        "JoinHoldingsPerformance, MetadataSource join(SelectBodyWrapper@fund_id == MetadataSource@fund_id,",
+                        "     joinType:'inner',",
+                        "     matchType:'exact',",
+                        "     ignoreSpaces: false,",
+                        "     broadcast: 'auto')~> JoinWithMetadata",
+                        "JoinWithMetadata sink(allowSchemaDrift: true,",
+                        "     validateSchema: false,",
+                        "     deletable:false,",
+                        "     insertable:true,",
+                        "     updateable:false,",
+                        "     upsertable:false,",
+                        "     format: 'table',",
+                        "     skipDuplicateMapInputs: true,",
+                        "     skipDuplicateMapOutputs: true,",
+                        "     errorHandlingOption: 'stopOnFirstError',",
+                        "     mapColumn(",
+                        "          asset_class,",
+                        "          current_price,",
+                        "          date = SelectBodyWrapper@date,",
+                        "          fund_id = SelectBodyWrapper@fund_id,",
+                        "          purchase_price,",
+                        "          quantity,",
+                        "          ticker,",
+                        "          NAV,",
+                        "          return_pct,",
+                        "          volatility,",
+                        "          manager,",
+                        "          strategy,",
+                        "          inception_date,",
+                        "          aum,",
+                        "          status",
+                        "     )) ~> sink1"
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/datasets/ds_api_holdings')]",
+                "[concat(variables('factoryId'), '/datasets/ds_blob_performance')]",
+                "[concat(variables('factoryId'), '/datasets/ds_blob_metadata')]",
+                "[concat(variables('factoryId'), '/datasets/ls_SQL_FinancialDB')]"
+            ]
+        }
+    ]
+}
