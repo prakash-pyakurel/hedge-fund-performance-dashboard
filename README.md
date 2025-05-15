@@ -67,10 +67,10 @@ This project demonstrates an end-to-end data pipeline that ingests, transforms, 
 
 ## 🖼 Azure & Dashboard Screenshots
 
-### 🔷 Azure Screenshots
-![ADF Pipeline](screenshots/adf_pipeline_success.png)  
-![Dataflow Join](screenshots/adf_dataflow_overview.png)  
-![REST API](screenshots/adf_rest_api_source.png)
+- ![ADF Pipeline](screenshots/adf_pipeline_success.png.png)
+- ![Dataflow Join](screenshots/adf_dataflow_overview.png.png)
+- ![REST API](screenshots/adf_rest_api_source.png.png)
+
 
 ### 📊 Power BI Dashboard
 ![Dashboard](screenshots/dashboard_final.png.png)
