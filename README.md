@@ -73,7 +73,7 @@ This project demonstrates an end-to-end data pipeline that ingests, transforms, 
 ![REST API](screenshots/adf_rest_api_source.png)
 
 ### 📊 Power BI Dashboard
-![Dashboard](screenshots/dashboard_final.png)
+![Dashboard](screenshots/dashboard_final.png.png)
 
 ---
 
